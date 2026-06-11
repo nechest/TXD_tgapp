@@ -136,8 +136,8 @@ const server = createServer(async (request, response) => {
   response.end("Method not allowed");
 });
 
-server.listen(port, () => {
-  console.log(`Mini App server: http://localhost:${port}`);
+server.listen(port, "0.0.0.0", () => {
+  console.log(`Mini App server: http://0.0.0.0:${port}`);
   if (appBaseUrl) console.log(`Public Mini App: ${appBaseUrl}`);
   void pollTelegram();
 });
