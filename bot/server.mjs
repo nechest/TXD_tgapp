@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const rootDir = normalize(join(fileURLToPath(new URL(".", import.meta.url)), ".."));
 const publicDir = normalize(join(rootDir, "dist"));
-const port = Number(process.env.PORT || 3000);
+const port = Number(process.env.APP_PORT || 3000);
 const botToken = process.env.BOT_TOKEN || "";
 const appBaseUrl = (process.env.APP_BASE_URL || "").replace(/\/$/, "");
 const telegramBaseUrl = botToken ? `https://api.telegram.org/bot${botToken}` : "";
@@ -138,6 +138,7 @@ const server = createServer(async (request, response) => {
 
 server.listen(port, "0.0.0.0", () => {
   console.log(`Mini App server: http://0.0.0.0:${port}`);
+  console.log(`Runtime PORT: ${process.env.PORT || "not set"}; APP_PORT: ${process.env.APP_PORT || "not set"}`);
   if (appBaseUrl) console.log(`Public Mini App: ${appBaseUrl}`);
   void pollTelegram();
 });
