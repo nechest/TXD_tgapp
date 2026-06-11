@@ -11,6 +11,7 @@ const port = Number(process.env.APP_PORT || 3000);
 const botToken = process.env.BOT_TOKEN || "";
 const appBaseUrl = (process.env.APP_BASE_URL || "").replace(/\/$/, "");
 const telegramBaseUrl = botToken ? `https://api.telegram.org/bot${botToken}` : "";
+const release = "2026-06-12.1";
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
@@ -151,7 +152,7 @@ const server = createServer(async (request, response) => {
       "content-type": "application/json; charset=utf-8",
       "cache-control": "no-store, max-age=0",
     });
-    response.end(JSON.stringify({ ok: true, telegramConfigured: Boolean(botToken && appBaseUrl) }));
+    response.end(JSON.stringify({ ok: true, release, telegramConfigured: Boolean(botToken && appBaseUrl) }));
     return;
   }
   if (request.method === "GET") return serveStatic(url.pathname, response);
