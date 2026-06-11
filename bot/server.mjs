@@ -1,4 +1,6 @@
 import { createServer } from "node:http";
+import { execFileSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import { readFile, stat } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,6 +21,21 @@ const contentTypes = {
 
 let offset = 0;
 let stopped = false;
+
+function ensureFrontendBuild() {
+  const indexPath = join(publicDir, "index.html");
+  if (existsSync(indexPath)) return;
+
+  console.log("Frontend build not found. Running npm run build...");
+  execFileSync("npm", ["run", "build"], {
+    cwd: rootDir,
+    stdio: "inherit",
+  });
+
+  if (!existsSync(indexPath)) {
+    throw new Error("Frontend build completed without dist/index.html");
+  }
+}
 
 async function telegramApi(method, body = {}) {
   const response = await fetch(`${telegramBaseUrl}/${method}`, {
@@ -115,9 +132,15 @@ async function serveStatic(pathname, response) {
     });
     response.end(file);
   } catch {
-    const index = await readFile(join(publicDir, "index.html"));
-    response.writeHead(200, { "content-type": contentTypes[".html"], "cache-control": "no-cache" });
-    response.end(index);
+    try {
+      const index = await readFile(join(publicDir, "index.html"));
+      response.writeHead(200, { "content-type": contentTypes[".html"], "cache-control": "no-cache" });
+      response.end(index);
+    } catch (error) {
+      console.error(`Static file error: ${error.message}`);
+      response.writeHead(503, { "content-type": "text/plain; charset=utf-8" });
+      response.end("Mini App frontend is not built");
+    }
   }
 }
 
@@ -135,6 +158,8 @@ const server = createServer(async (request, response) => {
   response.writeHead(405);
   response.end("Method not allowed");
 });
+
+ensureFrontendBuild();
 
 server.listen(port, "0.0.0.0", () => {
   console.log(`Mini App server: http://0.0.0.0:${port}`);
