@@ -11,7 +11,7 @@ const port = Number(process.env.APP_PORT || 3000);
 const botToken = process.env.BOT_TOKEN || "";
 const appBaseUrl = (process.env.APP_BASE_URL || "").replace(/\/$/, "");
 const telegramBaseUrl = botToken ? `https://api.telegram.org/bot${botToken}` : "";
-const release = "2026-06-12.1";
+const release = "2026-06-12.2";
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
@@ -27,8 +27,8 @@ function ensureFrontendBuild() {
   const indexPath = join(publicDir, "index.html");
   if (existsSync(indexPath)) return;
 
-  console.log("Frontend build not found. Running npm run build...");
-  execFileSync("npm", ["run", "build"], {
+  console.log("Frontend build not found. Running npm run build:host...");
+  execFileSync("npm", ["run", "build:host"], {
     cwd: rootDir,
     stdio: "inherit",
   });
