@@ -37,6 +37,23 @@ export interface ExamQuestion extends QuizQuestion {
   difficulty: Difficulty;
 }
 
+export interface ExamTicketTask {
+  id: string;
+  part: "part1" | "part2";
+  points: number;
+  prompt: string;
+  answer: string;
+  keyIdeas: string[];
+}
+
+export interface ExamTicket {
+  id: string;
+  title: string;
+  source: string;
+  topics: string[];
+  tasks: ExamTicketTask[];
+}
+
 export interface SummaryTopic {
   id: string;
   title: string;

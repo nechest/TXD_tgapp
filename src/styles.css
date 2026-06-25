@@ -151,6 +151,26 @@ p { color: var(--muted); line-height: 1.65; }
 .level-grid span { grid-row: span 2; color: var(--accent); font: 600 11px "IBM Plex Mono"; }
 .level-grid strong { font-size: 17px; letter-spacing: -.035em; }
 .level-grid p { margin: 4px 0 0; font-size: 10px; }
+.ticket-entry { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; padding: 18px; background: linear-gradient(145deg, #171d15, #0f140f); border: 1px solid #31412c; border-radius: var(--radius); }
+.ticket-entry h2 { margin-bottom: 7px; font-size: 23px; letter-spacing: -.05em; }
+.ticket-entry p { max-width: 450px; margin-bottom: 0; font-size: 11px; }
+.ticket-entry .button { flex: 0 0 auto; }
+.ticket-list { display: grid; gap: 14px; }
+.ticket-card { padding: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; }
+.ticket-head { display: flex; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+.ticket-head h2 { margin-bottom: 0; font-size: 25px; letter-spacing: -.055em; }
+.ticket-topics { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: 270px; }
+.ticket-topics span { padding: 7px 9px; color: var(--accent); background: var(--accent-dark); border: 1px solid #354820; border-radius: 999px; font: 700 9px "IBM Plex Mono"; }
+.ticket-tasks { display: grid; gap: 11px; }
+.ticket-task { padding: 14px; background: #0d120e; border: 1px solid #263127; border-radius: 15px; }
+.ticket-task-meta { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; color: #819083; font: 700 9px "IBM Plex Mono"; text-transform: uppercase; letter-spacing: .07em; }
+.ticket-task-meta strong { color: var(--accent); }
+.ticket-task h3 { margin-bottom: 12px; color: #e4ece4; font-size: 14px; line-height: 1.45; letter-spacing: -.025em; }
+.ticket-answer { display: grid; gap: 12px; margin-top: 12px; padding: 13px; background: #111810; border: 1px solid #344635; border-radius: 13px; }
+.ticket-answer p { margin-bottom: 0; color: #c2cec3; font-size: 11px; line-height: 1.7; }
+.ticket-answer strong { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; color: var(--accent); font-size: 11px; }
+.ticket-answer ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.ticket-answer li { padding: 7px 9px; color: #cbd9c0; background: #172111; border: 1px solid #2e4021; border-radius: 999px; font-size: 9px; font-weight: 700; }
 
 .progress-overview { padding: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-top: 18px; }
@@ -218,6 +238,9 @@ p { color: var(--muted); line-height: 1.65; }
   .complete-panel { align-items: stretch; flex-direction: column; }
   .complete-panel .button { width: 100%; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .ticket-entry, .ticket-head { align-items: stretch; flex-direction: column; }
+  .ticket-entry .button { width: 100%; }
+  .ticket-topics { justify-content: flex-start; max-width: none; }
   .summary-hero { align-items: stretch; flex-direction: column; }
   .summary-hero .button { width: 100%; }
 }
