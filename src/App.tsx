@@ -6,6 +6,7 @@ import { ModulePage } from "./pages/ModulePage";
 import { PracticePage } from "./pages/PracticePage";
 import { ProgressPage } from "./pages/ProgressPage";
 import { QuizPage } from "./pages/QuizPage";
+import { SummaryPage } from "./pages/SummaryPage";
 import { TheoryPage } from "./pages/TheoryPage";
 
 export function App() {
@@ -15,6 +16,7 @@ export function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/theory" element={<TheoryPage />} />
         <Route path="/theory/:moduleId" element={<ModulePage />} />
+        <Route path="/summary" element={<SummaryPage />} />
         <Route path="/practice" element={<PracticePage />} />
         <Route path="/quiz" element={<QuizPage />} />
         <Route path="/exam" element={<ExamPage />} />

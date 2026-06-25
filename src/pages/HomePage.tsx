@@ -1,4 +1,4 @@
-import { BookOpen, ChartDonut, Exam, Lightning, Wrench } from "@phosphor-icons/react";
+import { BookOpen, ChartDonut, Exam, Lightning, Notebook, Wrench } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { ModuleCard } from "../components/ModuleCard";
 import { ProgressBar } from "../components/ProgressBar";
@@ -7,6 +7,7 @@ import { useProgress } from "../context/ProgressContext";
 
 const actions = [
   { to: "/theory", label: "Теория", icon: BookOpen },
+  { to: "/summary", label: "Конспект", icon: Notebook },
   { to: "/practice", label: "Практика", icon: Wrench },
   { to: "/quiz", label: "Тест", icon: Lightning },
   { to: "/exam", label: "Экзамен", icon: Exam },

@@ -37,6 +37,19 @@ export interface ExamQuestion extends QuizQuestion {
   difficulty: Difficulty;
 }
 
+export interface SummaryTopic {
+  id: string;
+  title: string;
+  shortTitle: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  description: string;
+  keyPoints: string[];
+  examFocus: string[];
+  commonQuestions: string[];
+  codeExamples?: SqlExample[];
+}
+
 export interface Module {
   id: number;
   title: string;
