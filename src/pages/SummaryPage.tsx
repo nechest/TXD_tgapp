@@ -1,4 +1,4 @@
-import { ArrowSquareOut, CheckCircle, GraduationCap, ListChecks, Question } from "@phosphor-icons/react";
+import { ArrowSquareOut, Brain, CheckCircle, ClipboardText, GraduationCap, ListChecks, Question, Warning } from "@phosphor-icons/react";
 import { CodeBlock } from "../components/CodeBlock";
 import { PageHeader } from "../components/PageHeader";
 import { summaryTopics } from "../data/summary";
@@ -47,6 +47,17 @@ export function SummaryPage() {
               </div>
             </div>
 
+            {topic.detailBlocks && (
+              <div className="summary-detail">
+                {topic.detailBlocks.map((block) => (
+                  <section key={block.title}>
+                    <h3><ClipboardText size={18} weight="duotone" />{block.title}</h3>
+                    <p>{block.content}</p>
+                  </section>
+                ))}
+              </div>
+            )}
+
             <div className="summary-grid">
               <section>
                 <h3><GraduationCap size={18} weight="duotone" /> Главное</h3>
@@ -67,6 +78,31 @@ export function SummaryPage() {
                 </ul>
               </section>
             </div>
+
+            {(topic.typicalMistakes || topic.quickPractice || topic.memoryHint) && (
+              <div className="summary-extra">
+                {topic.typicalMistakes && (
+                  <section>
+                    <h3><Warning size={18} weight="duotone" /> Типичные ошибки</h3>
+                    <ul>
+                      {topic.typicalMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}
+                    </ul>
+                  </section>
+                )}
+                {topic.quickPractice && (
+                  <section>
+                    <h3><ClipboardText size={18} weight="duotone" /> Мини-практика</h3>
+                    <p>{topic.quickPractice}</p>
+                  </section>
+                )}
+                {topic.memoryHint && (
+                  <section className="memory-card">
+                    <h3><Brain size={18} weight="duotone" /> Запомнить</h3>
+                    <p>{topic.memoryHint}</p>
+                  </section>
+                )}
+              </div>
+            )}
 
             {topic.codeExamples?.map((example) => (
               <div className="summary-code" key={example.title}>

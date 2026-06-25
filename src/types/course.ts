@@ -44,9 +44,13 @@ export interface SummaryTopic {
   sourceLabel: string;
   sourceUrl: string;
   description: string;
+  detailBlocks?: LessonBlock[];
   keyPoints: string[];
   examFocus: string[];
   commonQuestions: string[];
+  typicalMistakes?: string[];
+  quickPractice?: string;
+  memoryHint?: string;
   codeExamples?: SqlExample[];
 }
 
